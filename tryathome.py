@@ -1,0 +1,13 @@
+from tkinter import *
+window = Tk()
+label1 = Label(None, text='Path 1:', )
+label1.grid(column=0, row=0)
+path1 = Entry(window, width=50)
+path1.grid(column=1, row=0)
+label2 = Label(None, text='Path 2:', )
+label2.grid(column=0, row=1)
+path2 = Entry(window, width=50)
+path2.grid(column=1, row=1)
+button1 = Button(None, text='Compare')
+button1.grid(column=0, row=2)
+window.mainloop()
