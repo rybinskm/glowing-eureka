@@ -3,7 +3,7 @@ from os.path import *
 from random import *
 
 def generate():
-    korwinizmy = open('G:\PycharmProjects\korwinizmy.txt', 'a')
+    korwinizmy = open('G:\PycharmProjects\korwin_speech_generator\korwinizmy.txt', 'a')
     list = []
     ch = chr(122)
     c = 0
