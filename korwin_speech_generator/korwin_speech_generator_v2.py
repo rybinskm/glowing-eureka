@@ -1,3 +1,7 @@
+# author: Michał Rybiński
+# nickname: rybinskm
+# date of create: 21-03-2021
+
 from tkinter import *
 from os.path import *
 from random import *

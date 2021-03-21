@@ -1,4 +1,7 @@
-import os
+# author: Michał Rybiński
+# nickname: rybinskm
+# date of create: 21-03-2021
+
 import pathlib
 import shutil
 import openpyxl

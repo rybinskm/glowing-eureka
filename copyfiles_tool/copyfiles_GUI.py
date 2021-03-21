@@ -1,5 +1,8 @@
+# author: Michał Rybiński
+# nickname: rybinskm
+# date of create: 21-03-2021
+
 import pathlib
-import os, stat
 import shutil
 from tkinter import *
 from datetime import datetime

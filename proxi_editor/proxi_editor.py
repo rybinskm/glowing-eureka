@@ -1,3 +1,7 @@
+# author: Michał Rybiński
+# nickname: rybinskm
+# date of create: 21-03-2021
+
 import pyperclip
 
 # "2E 00 32" - debug to send proxi

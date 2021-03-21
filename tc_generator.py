@@ -1,3 +1,7 @@
+# author: Michał Rybiński
+# nickname: rybinskm
+# date of create: 21-03-2021
+
 import xlrd
 
 workbook = xlrd.open_workbook(r"C:\Users\Rybston\Desktop\TC\skr.xlsx")  # workbook pointer
