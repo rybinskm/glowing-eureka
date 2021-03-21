@@ -1,5 +1,8 @@
 # folders
+korwin_speech_generator/korwinizmy.txt
 .idea
 untitled
 __pycache__
+
+# extensions
 *.pyc
