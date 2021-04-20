@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 wefergfasergfaerg 2
+=======
+SDFASDF 1
+>>>>>>> f/NEW1
