@@ -10,6 +10,8 @@ from datetime import datetime
 def copy():
     source_path = srcpath.get()
     target_path = trgtpath.get()
+    logging = varLog.get()
+
     if len(fn.get()) == 0:
         file_name = ('')
     else:
@@ -21,8 +23,11 @@ def copy():
         file_type = ft.get()
 
     ### creating log
-    date = datetime.now()
-    log = date.strftime("%d-%m-%Y_%H%M%S")
+    if logging == 1:
+        print(f'Logging enabled.')
+        date = datetime.now()
+        log = date.strftime("%d-%m-%Y_%H%M%S")
+        log_file = open(f"{target_path}\Logfile_{log}.txt", "w+")
 
     files_list = []
     ext = (f'*.{file_type}')
@@ -42,6 +47,11 @@ def copy():
         print(f'Target path: {target_path}')
         print(f'Files to copy: {files_amount}')
         print('Start of copying.')
+        if logging == 1:
+            log_file.write(f'Source path: {source_path}\n')
+            log_file.write(f'Target path: {target_path}\n')
+            log_file.write(f'Files to copy: {files_amount}\n')
+            log_file.write('Start of copying.\n')
         for file in files_list:
             if file_name:
                 if file_name in str(file):
@@ -49,17 +59,25 @@ def copy():
                     shutil.copy(file, target_path)
                     file_order += 1
                     print(f'"{f}" copied. [{file_order}/{files_amount}]')
+                    if logging == 1:
+                        log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
             else:
                 f = str(file).split('\\')[-1]
                 shutil.copy(file, target_path)
                 file_order += 1
                 print(f'"{f}" copied. [{file_order}/{files_amount}]')
-        print(f'{len(files_list)} files was copied.')
+                if logging == 1:
+                    log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
+        print(f'{len(files_list)} files were copied.')
+        if logging == 1:
+            log_file.write(f'{len(files_list)} files were copied.')
+            log_file.close()
     else:
         if file_name:
             print(f'There is no file with name "{file_name}" for extension "{file_type}".')
         else:
             print(f'There is no file with extension "{file_type}" (blank field is equal all files extensions).')
+
 '''
         print(f'Logfile_{log} created.')
         log_file = open(f"{source_path}\Logfile_{log}.txt", "w")
@@ -139,5 +157,7 @@ chkLog.pack(side='bottom')
 
 source_path.set(r"C:\folder1")
 target_path.set(r"F:\folder2")
+file_type.set("jpg")
+varLog.set(1)
 
 mainloop()
