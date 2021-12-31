@@ -48,10 +48,10 @@ def gen():  # function for generating password for definied parameters
     result.set(st)
 
 window = Tk()
-window.geometry('300x200')
+window.geometry('550x200')
 window.title('Password Generator')
 
-varLen = Scale(label='Password length:', orient=HORIZONTAL, from_=1, to=48, length=200)
+varLen = Scale(label='Password length:', orient=HORIZONTAL, from_=1, to=64, length=200)
 varLen.pack(fill='y')
 
 varLet = IntVar()
@@ -70,7 +70,7 @@ genBut = Button(window, text='Generate', command=gen)
 genBut.pack(side='top')
 
 result = StringVar()
-res = Entry(window, width=50, textvariable=result, justify=CENTER)
+res = Entry(window, width=75, textvariable=result, justify=CENTER)
 res.pack(side='top')
 
 window.mainloop()
