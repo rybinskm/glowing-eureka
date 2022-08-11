@@ -1,7 +1,9 @@
-# author: Michał Rybiński
-# nickname: rybinskm
-# date of create: 21-03-2021
+# author:               Michał Rybiński
+# nickname:             rybinskm
+# date of create:       21-03-2021
+# date of last edit:    11-08-2022
 
+from decorators_training import time_execution
 from random import *
 from tkinter import *
 
@@ -19,6 +21,8 @@ signs:
     1: Script includes special signs.
 '''
 
+
+# @time_execution
 def gen():  # function for generating password for definied parameters
     length = int(varLen.get())  # assign value of varLen(Scale widget) to 'length' parameter
     letters = varLet.get()  # assign value of varLet(Checkbox #1 widget) to 'letters' parameter
@@ -29,7 +33,7 @@ def gen():  # function for generating password for definied parameters
         rd = (randint(1, 4))  # draw one of four possible values
         if rd == 1:  # value of 'rd' for lower case
             z = chr(randint(97, 122))  # ASCII values for all lower cases
-        if rd == 2:  # value of 'rd' for capiral letters
+        if rd == 2:  # value of 'rd' for capital letters
             if letters == 1:  # if 'letters' from varLet(Checkbox #1 widget) is equal 1
                 z = chr(randint(65, 90))  # ASCII value for all capital letters
             else:  # if 'letters' from varLet(Checkbox #1 widget) is equal 0
@@ -46,6 +50,7 @@ def gen():  # function for generating password for definied parameters
                 z = chr(randint(97, 122))
         st = st + z
     result.set(st)
+
 
 window = Tk()
 window.geometry('550x200')

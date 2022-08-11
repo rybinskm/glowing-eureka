@@ -1,39 +1,38 @@
-# author: Michał Rybiński
-# nickname: rybinskm
-# date of create: 21-03-2021
+# author:               Michał Rybiński
+# nickname:             rybinskm
+# date of create:       21-03-2021
+# date of last edit:    11-08-2022
 
+import decorators_training as decor
+import os
 import pathlib
 import shutil
 from tkinter import *
 from datetime import datetime
 
+
+@decor.time_execution
 def copy():
     source_path = srcpath.get()
     target_path = trgtpath.get()
     logging = varLog.get()
 
     if len(fn.get()) == 0:
-        file_name = ('')
+        file_name = ''
     else:
         file_name = fn.get()
 
     if len(ft.get()) == 0:
-        file_type = ('*')
+        file_type = '*'
     else:
         file_type = ft.get()
 
-    ### creating log
-    if logging == 1:
-        print(f'Logging enabled.')
-        date = datetime.now()
-        log = date.strftime("%d-%m-%Y_%H%M%S")
-        log_file = open(f"{target_path}\Logfile_{log}.txt", "w+")
-
-    files_list = []
-    ext = (f'*.{file_type}')
-
     # getting amount of files to copy
+    files_list = []
+    ext = f'*.{file_type}'
+
     for file in pathlib.Path(source_path).glob(f'{ext}'):
+        # files_list.append(file)
         if file_name:
             if file_name in str(file):
                 files_list.append(file)
@@ -43,15 +42,25 @@ def copy():
     file_order = 0
 
     if files_amount != 0:
+        # creating log
+        if logging == 1:
+            print(f'Logging enabled.')
+            date = datetime.now()
+            log = date.strftime("%d-%m-%Y_%H%M%S")
+            log_file = open(f"{target_path}\Logfile_{log}.txt", "w+")
+
         print(f'Source path: {source_path}')
         print(f'Target path: {target_path}')
         print(f'Files to copy: {files_amount}')
         print('Start of copying.')
         if logging == 1:
-            log_file.write(f'Source path: {source_path}\n')
-            log_file.write(f'Target path: {target_path}\n')
-            log_file.write(f'Files to copy: {files_amount}\n')
-            log_file.write('Start of copying.\n')
+            log_file.write(f'Source path: {source_path}\n'
+                           f'Target path: {target_path}\n'
+                           f'Files to copy: {files_amount}\n'
+                           'Start of copying.\n')
+            if file_name:
+                print(f'Files copied with file name "{file_name}".')
+                log_file.write(f'Files copied with file name "{file_name}".\n')
         for file in files_list:
             if file_name:
                 if file_name in str(file):
@@ -59,15 +68,19 @@ def copy():
                     shutil.copy(file, target_path)
                     file_order += 1
                     print(f'"{f}" copied. [{file_order}/{files_amount}]')
+                    print(f'File size: {os.path.getsize(file)} bytes.')
                     if logging == 1:
                         log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
+                        log_file.write(f'File size: {os.path.getsize(file)} bytes.\n')
             else:
                 f = str(file).split('\\')[-1]
                 shutil.copy(file, target_path)
                 file_order += 1
                 print(f'"{f}" copied. [{file_order}/{files_amount}]')
+                print(f'File size: {os.path.getsize(file)} bytes.')
                 if logging == 1:
                     log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
+                    log_file.write(f'File size: {os.path.getsize(file)} bytes.\n')
         print(f'{len(files_list)} files were copied.')
         if logging == 1:
             log_file.write(f'{len(files_list)} files were copied.')
@@ -78,46 +91,6 @@ def copy():
         else:
             print(f'There is no file with extension "{file_type}" (blank field is equal all files extensions).')
 
-'''
-        print(f'Logfile_{log} created.')
-        log_file = open(f"{source_path}\Logfile_{log}.txt", "w")
-
-        print(f'Source path: {source_path}')
-        log_file.write(f'Source path: {source_path}\n')
-        print(f'Target path: {target_path}')
-        log_file.write(f'Target path: {target_path}\n')
-        print(f'Files to copy: {files_amount}')
-        log_file.write(f'Files to copy: {files_amount}\n')
-        print('Start of copying.')
-        log_file.write('Start of copying.\n')
-        for file in files_list:
-            if file_name:
-                if file_name in str(file):
-                    f = str(file).split('\\')[-1]
-                    shutil.copy(file, target_path)
-                    file_order += 1
-                    print(f'"{f}" copied. [{file_order}/{files_amount}]')
-                    log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
-            else:
-                f = str(file).split('\\')[-1]
-                shutil.copy(file, target_path)
-                file_order += 1
-                print(f'"{f}" copied. [{file_order}/{files_amount}]')
-                log_file.write(f'"{f}" was copied. [{file_order}/{files_amount}]\n')
-        print(f'{len(files_list)} files was copied.')
-        log_file.write(f'{len(files_list)} files were copied.')
-        log_file.close()
-        
-        if file_name is True and file_type is True:
-            print(f'There is no file with name "{file_name}" for extension "{file_type}".')
-        elif file_name is True and file_type is False:
-            print(f'There is no file with extension "{file_type}" (blank field is equal all files extensions).')
-        elif file_name is False and file_type is False:
-            print(f'There is no file with name "{file_name}".')
-        elif file_name is False and file_type is True:
-            print(f'There is no file with extension "{file_type}".')
-
-'''
 
 # GUI construction
 window = Tk()
@@ -157,7 +130,7 @@ chkLog.pack(side='bottom')
 
 source_path.set(r"C:\folder1")
 target_path.set(r"F:\folder2")
-file_type.set("jpg")
+# file_type.set("jpg")
 varLog.set(1)
 
 mainloop()
