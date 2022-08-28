@@ -1,10 +1,12 @@
 # folders
 accounts2
 korwin_speech_generator/korwinizmy.txt
+selenium_exercies/credentials.py
 .idea
 others
 untitled
 __pycache__
 
 # extensions
+*.log
 *.pyc
