@@ -3,7 +3,7 @@
 # date of create:       21-03-2021
 # date of last edit:    11-08-2022
 
-import decorators_training as decor
+from decorators_training import time_execution
 import os
 import pathlib
 import shutil
@@ -11,7 +11,7 @@ from tkinter import *
 from datetime import datetime
 
 
-@decor.time_execution
+@time_execution
 def copy():
     source_path = srcpath.get()
     target_path = trgtpath.get()

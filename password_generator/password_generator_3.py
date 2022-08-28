@@ -23,7 +23,7 @@ signs:
 
 
 # @time_execution
-def gen():  # function for generating password for definied parameters
+def gen():  # function for generating password for defined parameters
     length = int(varLen.get())  # assign value of varLen(Scale widget) to 'length' parameter
     letters = varLet.get()  # assign value of varLet(Checkbox #1 widget) to 'letters' parameter
     numbers = varNum.get()  # assign value of varNum variable(Checkbox #2 widget) to 'numbers' parameter

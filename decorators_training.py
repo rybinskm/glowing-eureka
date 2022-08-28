@@ -8,7 +8,6 @@ from datetime import datetime
 
 def time_execution(func):
     def wrapper(*args, **kwargs):
-        print('Decorator here')
         start_time = datetime.now()
         logged_time = start_time.strftime('%H:%M:%S')
         print(f'Start time of function: {logged_time}')
